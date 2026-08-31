@@ -16,7 +16,7 @@ _MODEL_NAME = os.environ.get("OPENROUTER_MODEL", "openai/gpt-4o-mini")
 
 _llm = ChatOpenAI(
     model=_MODEL_NAME,
-    api_key=os.getenv("OPENAI_API_KEY"),
+    api_key=os.getenv("OPENROUTER_API_KEY"),
     base_url="https://openrouter.ai/api/v1",
     temperature=0,
 )
