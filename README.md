@@ -1,16 +1,16 @@
-# 🏥 Clinic Chatbot
+#  Clinic Chatbot
 
 An AI-powered clinic assistant that helps patients book appointments and predict walk-in crowd levels using a combination of **Agentic AI**, **LangGraph**, **LLMs**, and a **Machine Learning model**.
 
-## 🚀 Live Demo
+##  Live Demo
 
-🔗 **Live Demo:** https://clinic-chatbot-agent-01.streamlit.app/
+ **Live Demo:** https://clinic-chatbot-agent-01.streamlit.app/
 
 ---
 
-## ✨ Features
+##  Features
 
-### 📅 Appointment Booking
+###  Appointment Booking
 - Guides patients through the appointment booking process.
 - Collects:
   - Preferred date and time
@@ -19,7 +19,7 @@ An AI-powered clinic assistant that helps patients book appointments and predict
 - Sends appointment confirmation via email.
 - Automatically logs bookings to Airtable.
 
-### 🚶 Walk-in Crowd Prediction
+###  Walk-in Crowd Prediction
 - Predicts clinic busyness for a selected date and time.
 - Classifies expected crowd levels as:
   -  Free
@@ -31,38 +31,28 @@ An AI-powered clinic assistant that helps patients book appointments and predict
 ##  Architecture
 
 ```mermaid
-graph TD
+flowchart TD
 
     A[Patient] --> B[Streamlit UI]
 
-    B --> C[Planner Agent<br/>LangGraph + LLM]
+    B --> C[Planner Agent<br>LangGraph + LLM]
 
-    C --> D{Intent Detection}
+    C --> D[Appointment Tool]
+    C --> E[Walk-in Tool]
 
-    D -->|Book Appointment| E[Appointment Tool]
+    D --> F[Email Service]
+    D --> G[Airtable]
 
-    D -->|Walk-in Query| F[Walk-in Prediction Tool]
+    E --> H[ML Model]
 
-    E --> G[Send Email]
-
-    E --> H[Airtable Logging]
-
-    F --> I[ML Model]
-
-    I --> J[Busy / Normal / Free]
-
-    G --> K[Final Response]
-
-    H --> K
-
-    J --> K
-
-    K --> B
+    F --> I[Response]
+    G --> I
+    H --> I
 ```
 
 ---
 
-## 🧠 How It Works
+##  How It Works
 
 The LLM acts as a **planner**, not a predictor.
 
@@ -101,7 +91,7 @@ LOW, HIGH = 2.0, 4.0
 
 ---
 
-## ⚙️ Environment Variables
+##  Environment Variables
 
 Create a `.env` file in the project root:
 
@@ -126,12 +116,12 @@ AIRTABLE_TABLE_NAME=Bookings
 
 ---
 
-## 🚀 Installation
+##  Installation
 
 ### 1. Clone the Repository
 
 ```bash
-git clone 
+git clone https://github.com/mayaannkkk/Clinic-ChatBot-Agent.git
 
 cd clinic-chatbot
 ```
