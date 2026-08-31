@@ -1,0 +1,14 @@
+streamlit
+langgraph
+langchain
+langchain-core
+langchain-groq
+langchain-openai
+langchain-openrouter
+pydantic
+
+pandas
+numpy
+scikit-learn
+
+python-dotenv
