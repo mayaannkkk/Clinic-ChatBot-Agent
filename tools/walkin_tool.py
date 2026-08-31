@@ -18,7 +18,7 @@ for _p in (_project_root, _models_dir):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
-# Load model (cached)
+# Load model 
 _model = None
 _model_error = None
 
@@ -51,14 +51,14 @@ def check_walkin(date_time_str: str) -> str:
 
         # Validate clinic hours
         if not (8 <= dt.hour < 12 or 16 <= dt.hour < 22):
-            result = "⚠️ Error: Time is outside clinic hours (8-12 AM, 4-10 PM)."
+            result = " Error: Time is outside clinic hours (8-12 AM, 4-10 PM)."
             logger.info("check_walkin result: %s", result)
             return result
 
         # Get model
         model = get_model()
         if model is None:
-            result = f"⚠️ Error: ML model failed to load. {_model_error}"
+            result = f" Error: ML model failed to load. {_model_error}"
             logger.error("check_walkin result: %s", result)
             return result
 
@@ -82,8 +82,8 @@ def check_walkin(date_time_str: str) -> str:
         response = f"🔍 **Prediction:** {status}\n\n"
 
         if status == "Busy":
-            response += "⚠️ That time is expected to be busy.\n\n"
-            response += "💡 **Quieter times nearby:**\n"
+            response += " That time is expected to be busy.\n\n"
+            response += " **Quieter times nearby:**\n"
 
             # Suggest quieter times
             suggestions = []
@@ -103,14 +103,14 @@ def check_walkin(date_time_str: str) -> str:
                 response += "No alternatives found in this session."
 
         elif status == "Normal":
-            response += "ℹ️ It's a reasonable time to visit."
+            response += " It's a reasonable time to visit."
         else:  # Free
-            response += "✅ Great time to walk in – it's free!"
+            response += " Great time to walk in – it's free!"
 
         logger.info("check_walkin result: %s", response.replace(chr(10), " | "))
         return response
 
     except Exception as e:
-        result = f"⚠️ Error checking walk-in: {type(e).__name__}: {str(e)}"
+        result = f" Error checking walk-in: {type(e).__name__}: {str(e)}"
         logger.error("check_walkin exception: %s", result)
         return result
